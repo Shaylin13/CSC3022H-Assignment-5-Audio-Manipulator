@@ -210,25 +210,123 @@ int main(int argc, char* argv[])
 	else if(option.compare("-rev") == 0)
 	{
 	    cout<< option <<" function implemented"<<endl;
+	    inputFileName = argv[optionIndex+1];
 	    
+	    if(sampleSize == 8)
+	    {
+	        if(numberOfChannels == 1)
+	        {
+	            Sound<int8_t,1> sound1 (inputFileName, sampleRate);
+	            sound1.reverse();
+	            sound1.save(outputFileName);
+	            
+	        }
+	        else//2 channels
+	        {
+	            Sound<int8_t,2> sound1 (inputFileName, sampleRate);
+	            sound1.reverse();
+	            sound1.save(outputFileName);
+	        }
+	    }
+	    else// sample size = 16 bits
+	    {
+	        if(numberOfChannels == 1)
+	        {
+	            Sound<int16_t,1> sound1 (inputFileName, sampleRate);
+	            sound1.reverse();
+	            sound1.save(outputFileName);
+	        }
+	        else//2 channels
+	        {
+	            Sound<int16_t,2> sound1 (inputFileName, sampleRate);
+	            sound1.reverse();
+	            sound1.save(outputFileName);
+	        }
+	    }
 	}
 	else if(option.compare("-rms") == 0)
 	{
 	    cout<< option <<" function implemented"<<endl;
+	    inputFileName = argv[optionIndex+1];
+	    
+	    if(sampleSize == 8)
+	    {
+	        if(numberOfChannels == 1)
+	        {
+	            Sound<int8_t,1> sound1 (inputFileName, sampleRate);
+	            cout << inputFileName  << " RMS : "<< sound1.calcRMS() << endl;
+	        }
+	        else//2 channels
+	        {
+	            Sound<int8_t,2> sound1 (inputFileName, sampleRate);
+	            cout << inputFileName  << " RMS : "<< sound1.calcRMS().first << endl;
+	            cout << inputFileName  << " RMS : "<< sound1.calcRMS().second << endl;
+	        }
+	    }
+	    else// sample size = 16 bits
+	    {
+	        if(numberOfChannels == 1)
+	        {
+	            Sound<int16_t,1> sound1 (inputFileName, sampleRate);
+	            cout << inputFileName  << " RMS : "<< sound1.calcRMS() << endl;
+	        }
+	        else//2 channels
+	        {
+	            Sound<int16_t,2> sound1 (inputFileName, sampleRate);
+	            cout << inputFileName  << " RMS : "<< sound1.calcRMS().first << endl;
+	            cout << inputFileName  << " RMS : "<< sound1.calcRMS().second << endl;
+	        }
+	    }
 	}
 	else if(option.compare("-norm") == 0)
 	{
 	    cout<< option <<" function implemented"<<endl;
+	    
+	    inputFileName = argv[optionIndex+3];
+	    float r1 = stof(argv[optionIndex+1]);
+	    float r2 = stof(argv[optionIndex+2]);
+	    
+	    if(sampleSize == 8)
+	    {
+	        if(numberOfChannels == 1)
+	        {
+	            Sound<int8_t,1> sound1 (inputFileName, sampleRate);
+	            sound1.normalize(r1);
+	            sound1.save(outputFileName);
+	        }
+	        else//2 channels
+	        {
+	            Sound<int8_t,2> sound1 (inputFileName, sampleRate);
+	            sound1.normalize(r1, r2);
+	            sound1.save(outputFileName);
+	        }
+	    }
+	    else// sample size = 16 bits
+	    {
+	        if(numberOfChannels == 1)
+	        {
+	            Sound<int16_t,1> sound1 (inputFileName, sampleRate);
+	            sound1.normalize(r1);
+	            sound1.save(outputFileName);
+	        }
+	        else//2 channels
+	        {
+	            Sound<int16_t,2> sound1 (inputFileName, sampleRate);
+	            sound1.normalize(r1, r2);
+	            sound1.save(outputFileName);
+	        }
+	    }
+	    
 	}
 	
 	//testing------------------------------------------------
-	/*cout<<"input file name: "<<inputFileName<<endl;
+	cout<<"input file name: "<<inputFileName<<endl;
 	cout<<"input file name2: "<<inputFileName2<<endl;
 	cout<<"sample rate: "<<sampleRate<<endl;
 	cout<<"sample size: "<<sampleSize<<endl;
 	cout<<"number of channels: "<<numberOfChannels<<endl;
 	cout<<"output file name: "<<outputFileName<<endl;
-	cout<<"option: "<<option<<endl;*/
+	cout<<"option: "<<option<<endl;
 	
 	/*cout<<endl;
 	for(int i =1;i<argc ; i++)
@@ -244,6 +342,11 @@ int main(int argc, char* argv[])
     Sound<int8_t,1> sample1 (infile1, sampleRate2);//Create audio Sample #1,8bit
     //sample1.reverse();
     sample1.save("testsample");*/
+    Sound<int8_t,2> soundx ("file3.raw", sampleRate);
+    Sound<int8_t,2> soundy ("file4.raw", sampleRate);
+    (soundx + soundy).save("soundx");
+    //(soundx * make_pair(10, 10)).save("soundx");
+    //soundx.save("soundx");
     
     
     
