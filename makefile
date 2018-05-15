@@ -16,9 +16,9 @@ clean:
 		@rm -f driver
 		
 test1: 
-		./driver -r 44100 -b 8 -c 1 -o output -add file1 file2
+		./driver -r 44100 -b 8 -c 1 -o output -add file1.raw file2.raw
 		
 test2: 
-		./driver -r 44100 -b 8 -c 1 -add file1 file2
+		./driver -r 44100 -b 8 -c 1 -add file1.raw file2.raw
 		
 		

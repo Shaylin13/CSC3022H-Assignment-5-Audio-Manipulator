@@ -39,18 +39,80 @@ int main(int argc, char* argv[])
 	}
 	
 	//deciding based on option
-	
-	
-	
+
+	if(option.compare("-add") == 0)//if the option is -add================
+	{
+	    cout<< option <<" function implemented"<<endl;
+	        
+	   if(sampleSize == 8)
+	    {
+	        if(numberOfChannels == 1)
+	        {
+	            Sound<int8_t,1> sound1 (inputFileName, sampleRate);
+	            Sound<int8_t,1> sound2 (inputFileName2, sampleRate);
+	            (sound1 + sound2).save(outputFileName);
+	        }
+	        else//2 channels
+	        {
+	            Sound<int8_t,2> sound1 (inputFileName, sampleRate);
+	            Sound<int8_t,2> sound2 (inputFileName2, sampleRate);
+	            (sound1 + sound2).save(outputFileName);
+	        }
+	    }
+	    else// sample size = 16 bits
+	    {
+	        if(numberOfChannels == 1)
+	        {
+	            Sound<int16_t,1> sound1 (inputFileName, sampleRate);
+	            Sound<int16_t,1> sound2 (inputFileName2, sampleRate);
+	            (sound1 + sound2).save(outputFileName);
+	        }
+	        else//2 channels
+	        {
+	            Sound<int16_t,2> sound1 (inputFileName, sampleRate);
+	            Sound<int16_t,2> sound2 (inputFileName2, sampleRate);
+	            (sound1 + sound2).save(outputFileName);
+	        }
+	    }
+
+	}//===================================================================
+	else if(option.compare("-cut") == 0)
+	{
+	    cout<< option <<" function implemented"<<endl;
+	}
+	else if(option.compare("radd") == 0)
+	{
+	    cout<< option <<" function implemented"<<endl;
+	}
+	else if(option.compare("-cat") == 0)
+	{
+	    cout<< option <<" function implemented"<<endl;
+	}
+	else if(option.compare("-v") == 0)
+	{
+	    cout<< option <<" function implemented"<<endl;
+	}
+	else if(option.compare("-rev") == 0)
+	{
+	    cout<< option <<" function implemented"<<endl;
+	}
+	else if(option.compare("-rms") == 0)
+	{
+	    cout<< option <<" function implemented"<<endl;
+	}
+	else if(option.compare("-norm") == 0)
+	{
+	    cout<< option <<" function implemented"<<endl;
+	}
 	
 	//testing------------------------------------------------
-	cout<<"input file name: "<<inputFileName<<endl;
+	/*cout<<"input file name: "<<inputFileName<<endl;
 	cout<<"input file name2: "<<inputFileName2<<endl;
 	cout<<"sample rate: "<<sampleRate<<endl;
 	cout<<"sample size: "<<sampleSize<<endl;
 	cout<<"number of channels: "<<numberOfChannels<<endl;
 	cout<<"output file name: "<<outputFileName<<endl;
-	cout<<"option: "<<option<<endl;
+	cout<<"option: "<<option<<endl;*/
 	
 	/*cout<<endl;
 	for(int i =1;i<argc ; i++)
@@ -60,12 +122,12 @@ int main(int argc, char* argv[])
 	//--------------------------------------------------------
 	
     
-    string infile1 = "beez18sec_44100_signed_8bit_mono.raw";
+    /*string infile1 = "beez18sec_44100_signed_8bit_mono.raw";
     int sampleRate2 = 44100;
     //testing
     Sound<int8_t,1> sample1 (infile1, sampleRate2);//Create audio Sample #1,8bit
     //sample1.reverse();
-    sample1.save("testsample");
+    sample1.save("testsample");*/
     
     
     
